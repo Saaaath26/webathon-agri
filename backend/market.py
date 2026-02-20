@@ -1,9 +1,13 @@
 import pandas as pd
 import random
+import os
 from datetime import datetime, timedelta
 
+# Get the directory where this script is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def get_live_price(crop):
-    df = pd.read_csv("Datasets/market_prices.csv")
+    df = pd.read_csv(os.path.join(BASE_DIR, "Datasets", "market_prices.csv"))
 
     # Case-insensitive search
     data = df[df["Crop"].str.lower() == crop.lower()]

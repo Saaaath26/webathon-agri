@@ -1,7 +1,11 @@
 import pandas as pd
+import os
+
+# Get the directory where this script is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def soil_suitability(soil, crop):
-    df = pd.read_csv("Datasets/soil_data.csv")
+    df = pd.read_csv(os.path.join(BASE_DIR, "Datasets", "soil_data.csv"))
 
     # Case-insensitive search
     row = df[(df["Soil"].str.lower() == soil.lower()) & (df["Crop"].str.lower() == crop.lower())]

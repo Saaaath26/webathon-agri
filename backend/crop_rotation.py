@@ -1,7 +1,11 @@
 import pandas as pd
+import os
+
+# Get the directory where this script is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def suggest_rotation(crop):
-    df = pd.read_csv("Datasets/rotation_data.csv")
+    df = pd.read_csv(os.path.join(BASE_DIR, "Datasets", "rotation_data.csv"))
 
     # Case-insensitive search
     row = df[df["CurrentCrop"].str.lower() == crop.lower()]

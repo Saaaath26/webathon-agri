@@ -1,8 +1,12 @@
 from datetime import datetime, timedelta
 import pandas as pd
+import os
+
+# Get the directory where this script is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def predict_harvest(crop, sow_date):
-    df = pd.read_csv("Datasets/crop_lifecycle.csv")
+    df = pd.read_csv(os.path.join(BASE_DIR, "Datasets", "crop_lifecycle.csv"))
 
     # Case-insensitive search
     row = df[df["Crop"].str.lower() == crop.lower()]
