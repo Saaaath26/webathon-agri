@@ -347,3 +347,36 @@ function toggleTheme() {
     localStorage.setItem('theme', newTheme);
 }
 
+// Language Menu Toggle
+function toggleLanguageMenu() {
+    const menu = document.getElementById('languageMenu');
+    menu.classList.toggle('show');
+}
+
+// Close language menu when clicking outside
+document.addEventListener('click', function(e) {
+    const dropdown = document.querySelector('.language-dropdown');
+    if (!dropdown.contains(e.target)) {
+        const menu = document.getElementById('languageMenu');
+        menu.classList.remove('show');
+    }
+});
+
+// Update active language button
+function updateLanguageButtons() {
+    document.querySelectorAll('.language-menu button').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById('lang-' + currentLanguage);
+    if (activeBtn) activeBtn.classList.add('active');
+}
+
+// Override changeLanguage to update buttons
+const originalChangeLanguage = changeLanguage;
+changeLanguage = function(lang) {
+    originalChangeLanguage(lang);
+    updateLanguageButtons();
+    
+    // Close menu after selection
+    const menu = document.getElementById('languageMenu');
+    menu.classList.remove('show');
+};
+

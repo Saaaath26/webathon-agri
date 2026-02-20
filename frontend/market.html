@@ -24,20 +24,32 @@
             <span>SmartFarm <span class="highlight">Pro</span></span>
         </div>
         <nav>
-            <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="market.html" class="active"><i class="fas fa-rupee-sign"></i> Market Price</a>
-            <a href="harvest.html"><i class="fas fa-calendar-check"></i> Harvest</a>
-            <a href="rotation.html"><i class="fas fa-sync-alt"></i> Rotation</a>
-            <a href="soil.html"><i class="fas fa-layer-group"></i> Soil</a>
-            <a href="weather.html"><i class="fas fa-cloud"></i> Weather</a>
+            <a href="index.html" data-nav="dashboard"><i class="fas fa-home"></i> <span data-translate="dashboard">Dashboard</span></a>
+            <a href="market.html" class="active" data-nav="market"><i class="fas fa-rupee-sign"></i> <span data-translate="marketPrice">Market Price</span></a>
+            <a href="harvest.html" data-nav="harvest"><i class="fas fa-calendar-check"></i> <span data-translate="harvest">Harvest</span></a>
+            <a href="rotation.html" data-nav="rotation"><i class="fas fa-sync-alt"></i> <span data-translate="rotation">Rotation</span></a>
+            <a href="soil.html" data-nav="soil"><i class="fas fa-layer-group"></i> <span data-translate="soil">Soil</span></a>
+            <a href="weather.html" data-nav="weather"><i class="fas fa-cloud"></i> <span data-translate="weather">Weather</span></a>
         </nav>
     </header>
 
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
-        <i class="fas fa-moon moon-icon"></i>
-        <i class="fas fa-sun sun-icon"></i>
-    </button>
+    <!-- Theme & Language Toggle -->
+    <div class="header-controls">
+        <div class="language-dropdown">
+            <button class="lang-toggle" onclick="toggleLanguageMenu()" title="Change Language">
+                <i class="fas fa-globe"></i>
+            </button>
+            <div class="language-menu" id="languageMenu">
+                <button onclick="changeLanguage('en')" id="lang-en"><span>🇺🇸</span> English</button>
+                <button onclick="changeLanguage('hi')" id="lang-hi"><span>🇮🇳</span> हिंदी</button>
+                <button onclick="changeLanguage('te')" id="lang-te"><span>🇮🇳</span> Telugu</button>
+            </div>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+            <i class="fas fa-moon moon-icon"></i>
+            <i class="fas fa-sun sun-icon"></i>
+        </button>
+    </div>
 
     <!-- Main Content -->
     <main class="page-content">
@@ -117,7 +129,8 @@
         <p>&copy; 2024 SmartFarm Pro - AI-Powered Agriculture Platform</p>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="translations.js"></script>
     <script src="script.js"></script>
     <script>
         // Initialize map centered on Andhra Pradesh & Telangana

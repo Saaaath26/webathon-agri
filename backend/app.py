@@ -13,6 +13,10 @@ CORS(app)
 # Serve frontend files
 @app.route('/')
 def index():
+    return send_from_directory('../frontend', 'login.html')
+
+@app.route('/index')
+def dashboard():
     return send_from_directory('../frontend', 'index.html')
 
 @app.route('/<path:filename>')
