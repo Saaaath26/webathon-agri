@@ -1,0 +1,17 @@
+Crop,Price,CostPerAcre,ExpectedYield,MarketDemand,BestSeason,ExportPotential
+Wheat,2400,18000,25,High,Rabi,Medium
+Paddy,1800,22000,30,High,Kharif,High
+Cotton,6200,35000,8,High,Kharif,High
+Tomato,9000,25000,100,High,Rabi,Medium
+Chana,5200,15000,8,Medium,Rabi,Low
+Groundnut,5800,22000,15,High,Kharif,High
+Maize,1900,18000,30,High,Kharif,Medium
+Rice,2100,25000,25,High,Kharif,High
+Sugarcane,3500,45000,400,High,Annual,High
+Potato,1500,20000,100,High,Rabi,Medium
+Peas,4500,16000,12,Medium,Rabi,Low
+Mustard,5800,14000,8,Medium,Rabi,Medium
+Soybean,4800,17000,12,High,Kharif,High
+Onion,2500,20000,80,High,Rabi,High
+Cabbage,1200,15000,120 quintal,Medium,Rabi,Low
+

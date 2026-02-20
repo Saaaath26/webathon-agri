@@ -1,0 +1,12 @@
+CurrentCrop,NextCrop,Benefit,Advice,EstimatedCost,ExpectedRevenue,ProfitMargin
+Paddy,Chana,Fixes nitrogen in soil,Plant chana after paddy to restore soil fertility,25000,45000,44%
+Wheat,Groundnut,Improves soil structure,Groundnut fixes nitrogen for next wheat crop,22000,38000,42%
+Cotton,Wheat,Different nutrient needs,Cotton depletes potassium wheat needs less,45000,75000,40%
+Tomato,Chana,Breaks pest cycles,Legumes reduce tomato pests,35000,62000,44%
+Chana,Cotton,Restores nitrogen,Cotton follows well after chana,18000,32000,44%
+Groundnut,Paddy,Good residue management,Plough groundnut residue into soil,28000,48000,42%
+Maize,Peas,Improves soil health,Peas fix nitrogen for maize,30000,52000,42%
+Rice,Wheat,Different water needs,Traditional rice wheat rotation,26000,44000,41%
+Sugarcane,Potato,Good economic rotation,High returns from both crops,55000,95000,42%
+Mustard,Peas,Oilseed-legume combination,Mustard followed by peas is beneficial,20000,35000,43%
+

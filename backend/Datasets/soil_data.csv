@@ -1,0 +1,21 @@
+Soil,Crop,Suitability,Notes
+Black,Wheat,High,Best for wheat cultivation
+Black,Paddy,Medium,Requires irrigation
+Black,Cotton,High,Excellent for cotton
+Alluvial,Wheat,High,Rich nutrient content
+Alluvial,Paddy,High,Ideal for paddy
+Alluvial,Rice,High,Best for rice cultivation
+Loamy,Wheat,High,Good drainage
+Loamy,Paddy,High,Retains moisture well
+Loamy,Tomato,High,Excellent for vegetables
+Loamy,Maize,High,Good yield expected
+Sandy,Wheat,Medium,Needs frequent irrigation
+Sandy,Groundnut,High,Sandy soil ideal for groundnut
+Sandy,Cotton,Medium,Requires more water
+Red,Wheat,Low,Add organic matter
+Red,Paddy,Medium,Needs fertilization
+Red,Cotton,High,Good for cotton
+Red,Groundnut,High,Excellent for groundnut
+Clay,Maize,High,Retains water well
+Clay,Wheat,Medium,Good for wheat
+Clay,Rice,High,Ideal for rice

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarm Pro - AI-Powered Agricultural Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>SmartFarm <span class="highlight">Pro</span></span>
+        </div>
+        <nav>
+            <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
+            <a href="#"><i class="fas fa-map-marker-alt"></i> Fields</a>
+            <a href="#"><i class="fas fa-user-circle"></i> Profile</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to <span class="gradient-text">Smart Farming</span></h1>
+            <p>AI-powered agricultural predictions for better yields and smarter decisions</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Accuracy</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Crops Supported</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">AI Assistant</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <main>
+        <!-- Weather Alert Banner -->
+        <div class="weather-banner" id="weatherBanner">
+            <div class="weather-icon">
+                <i class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="weather-info">
+                <h3><i class="fas fa-bell"></i> Weather Alert</h3>
+                <p id="weatherResult">Loading weather data...</p>
+            </div>
+            <button class="refresh-btn" onclick="getWeather()">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid">
+            <!-- Live Market Price Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon price-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h2>Live Market Price</h2>
+                </div>
+                <div class="card-body">
+                    <input type="text" id="priceCrop" placeholder="Enter crop name (e.g., Wheat, Paddy, Tomato)">
+                    <button class="btn-primary" onclick="getPrice()">
+                        <i class="fas fa-search-dollar"></i> Get Price
+                    </button>
+                    <div class="result-box" id="priceResult">
+                        <p class="placeholder-text">Enter a crop to see current market prices</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Harvest Prediction Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon harvest-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h2>Harvest Prediction</h2>
+                </div>
+                <div class="card-body">
+                    <input type="text" id="harvestCrop" placeholder="Crop Name">
+                    <input type="date" id="sowingDate">
+                    <button class="btn-success" onclick="getHarvest()">
+                        <i class="fas fa-calendar-plus"></i> Predict Harvest
+                    </button>
+                    <div class="result-box" id="harvestResult">
+                        <p class="placeholder-text">Enter crop and sowing date</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crop Rotation Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon rotation-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h2>Crop Rotation</h2>
+                </div>
+                <div class="card-body">
+                    <input type="text" id="rotationCrop" placeholder="Current Crop">
+                    <button class="btn-warning" onclick="getRotation()">
+                        <i class="fas fa-seedling"></i> Suggest Next Crop
+                    </button>
+                    <div class="result-box" id="rotationResult">
+                        <p class="placeholder-text">Enter current crop for rotation suggestion</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soil Suitability Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon soil-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2>Soil Suitability</h2>
+                </div>
+                <div class="card-body">
+                    <input type="text" id="soilType" placeholder="Soil Type (Black, Red, Loamy, etc.)">
+                    <input type="text" id="soilCrop" placeholder="Crop Name">
+                    <button class="btn-info" onclick="checkSoil()">
+                        <i class="fas fa-flask"></i> Check Suitability
+                    </button>
+                    <div class="result-box" id="soilResult">
+                        <p class="placeholder-text">Enter soil type and crop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Tips Section -->
+        <section class="tips-section">
+            <h2><i class="fas fa-lightbulb"></i> Farming Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-tint"></i>
+                    <h4>Water Management</h4>
+                    <p>Use drip irrigation to save up to 60% water and increase yield by 30%</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-bug"></i>
+                    <h4>Pest Control</h4>
+                    <p>Use integrated pest management (IPM) to reduce chemical usage</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-seedling"></i>
+                    <h4>Crop Planning</h4>
+                    <p>Rotate crops annually to maintain soil fertility and reduce diseases</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-cloud"></i>
+                    <h4>Weather Watch</h4>
+                    <p>Check weather forecasts daily and plan farm activities accordingly</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SmartFarm Pro - AI-Powered Agriculture Platform</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

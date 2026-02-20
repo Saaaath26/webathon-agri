@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmer Smart Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🌾 Smart Farming Dashboard</h1>
+
+<div class="section">
+    <h2>Live Market Price</h2>
+    <input type="text" id="priceCrop" placeholder="Enter Crop (Wheat/Paddy/etc)">
+    <button onclick="getPrice()">Check Price</button>
+    <p id="priceResult"></p>
+</div>
+
+<div class="section">
+    <h2>Harvest Prediction</h2>
+    <input type="text" id="harvestCrop" placeholder="Crop Name">
+    <input type="date" id="sowingDate">
+    <button onclick="getHarvest()">Predict Harvest</button>
+    <p id="harvestResult"></p>
+</div>
+
+<div class="section">
+    <h2>Crop Rotation Suggestion</h2>
+    <input type="text" id="rotationCrop" placeholder="Current Crop">
+    <button onclick="getRotation()">Suggest Next Crop</button>
+    <p id="rotationResult"></p>
+</div>
+
+<div class="section">
+    <h2>Soil Suitability Check</h2>
+    <input type="text" id="soilType" placeholder="Soil Type (Black/Red/etc)">
+    <input type="text" id="soilCrop" placeholder="Crop Name">
+    <button onclick="checkSoil()">Check Soil</button>
+    <p id="soilResult"></p>
+</div>
+
+<div class="section">
+    <h2>Weather Alert</h2>
+    <button onclick="getWeather()">Check Weather</button>
+    <p id="weatherResult"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
