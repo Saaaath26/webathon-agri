@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Rotation - SmartFarm Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>SmartFarm <span class="highlight">Pro</span></span>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="market.html"><i class="fas fa-rupee-sign"></i> Market Price</a>
+            <a href="harvest.html"><i class="fas fa-calendar-check"></i> Harvest</a>
+            <a href="rotation.html" class="active"><i class="fas fa-sync-alt"></i> Rotation</a>
+            <a href="soil.html"><i class="fas fa-layer-group"></i> Soil</a>
+            <a href="weather.html"><i class="fas fa-cloud"></i> Weather</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="page-header">
+            <h1><i class="fas fa-sync-alt"></i> Crop Rotation</h1>
+            <p>Get smart crop rotation suggestions for maintaining soil health in AP & Telangana</p>
+        </div>
+
+        <div class="field-container">
+            <!-- Map Section -->
+            <div class="map-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Regional Crop Patterns</h2>
+                <div id="map"></div>
+                <div class="map-legend">
+                    <span><i class="fas fa-circle" style="color: #27ae60;"></i> Paddy Zone</span>
+                    <span><i class="fas fa-circle" style="color: #8e44ad;"></i> Cotton Zone</span>
+                    <span><i class="fas fa-circle" style="color: #e67e22;"></i> Groundnut Zone</span>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon rotation-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h2>Suggest Next Crop</h2>
+                    </div>
+                    <div class="card-body">
+                        <select id="regionRotation">
+                            <option value="">Select Region</option>
+                            <option value="Coastal Andhra">Coastal Andhra</option>
+                            <option value="Rayalaseema">Rayalaseema</option>
+                            <option value="Telangana">Telangana</option>
+                        </select>
+                        <input type="text" id="rotationCrop" placeholder="Current Crop (e.g., Paddy, Cotton, Groundnut)">
+                        <button class="btn-warning" onclick="getRotation()">
+                            <i class="fas fa-seedling"></i> Suggest Next Crop
+                        </button>
+                        <div class="result-box" id="rotationResult">
+                            <p class="placeholder-text">Enter current crop for rotation suggestion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rotation Info -->
+        <div class="market-info-grid">
+            <div class="info-card">
+                <i class="fas fa-recycle"></i>
+                <h3>Why Rotate?</h3>
+                <p>Prevents soil depletion, reduces pest buildup, improves yield</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-leaf"></i>
+                <h3>AP Best Practices</h3>
+                <p>Paddy → Pulses | Cotton → Green Manure | Groundnut → Cereal</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-hand-holding-water"></i>
+                <h3>Telangana Tips</h3>
+                <p>Follow IPC guidelines for black cotton soils</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SmartFarm Pro - AI-Powered Agriculture Platform</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize map centered on Andhra Pradesh & Telangana
+        const map = L.map('map').setView([17.5, 79.5], 7);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Crop zone markers
+        const cropZones = [
+            // Paddy Zones (Coastal)
+            { name: "Krishna Delta", coords: [16.5, 81.0], type: "paddy", crops: "Paddy, Sugarcane" },
+            { name: "Godavari Delta", coords: [17.0, 82.0], type: "paddy", crops: "Paddy, Banana" },
+            { name: "Kakinada", coords: [16.9891, 82.2475], type: "paddy", crops: "Paddy" },
+            { name: "Nellore", coords: [14.4426, 79.9868], type: "paddy", crops: "Paddy, Groundnut" },
+            
+            // Cotton Zones (Telangana & Rayalaseema)
+            { name: "Warangal", coords: [17.9784, 79.5941], type: "cotton", crops: "Cotton, Chillies" },
+            { name: "Karimnagar", coords: [18.4386, 79.1288], type: "cotton", crops: "Cotton, Soybean" },
+            { name: "Adilabad", coords: [19.6641, 78.5320], type: "cotton", crops: "Cotton, Maize" },
+            { name: "Mahbubnagar", coords: [16.7488, 77.9883], type: "cotton", crops: "Cotton, Groundnut" },
+            
+            // Groundnut Zones (Rayalaseema)
+            { name: "Anantapur", coords: [14.6819, 77.6186], type: "groundnut", crops: "Groundnut, Sunflower" },
+            { name: "Kurnool", coords: [15.8281, 78.0378], type: "groundnut", crops: "Groundnut, Cotton" },
+            { name: "Kadapa", coords: [14.4687, 78.8242], type: "groundnut", crops: "Groundnut, Pulses" }
+        ];
+
+        const colors = {
+            "paddy": "#27ae60",
+            "cotton": "#8e44ad",
+            "groundnut": "#e67e22"
+        };
+
+        // Add markers for each zone
+        cropZones.forEach(zone => {
+            const marker = L.circleMarker(zone.coords, {
+                radius: 12,
+                fillColor: colors[zone.type],
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+            
+            marker.bindPopup(`<b>${zone.name}</b><br>Crops: ${zone.crops}<br><em>${zone.type} zone</em>`);
+        });
+
+        // Add zone boundaries
+        // Paddy Zone
+        L.rectangle([[15.5, 79.5], [18.5, 83]], {
+            color: "#27ae60",
+            weight: 2,
+            fillOpacity: 0.05,
+            fillColor: "#27ae60"
+        }).addTo(map);
+
+        // Cotton Zone
+        L.rectangle([[16, 77.5], [20, 81]], {
+            color: "#8e44ad",
+            weight: 2,
+            fillOpacity: 0.05,
+            fillColor: "#8e44ad"
+        }).addTo(map);
+
+        // Groundnut Zone
+        L.rectangle([[14, 77], [16, 80]], {
+            color: "#e67e22",
+            weight: 2,
+            fillOpacity: 0.05,
+            fillColor: "#e67e22"
+        }).addTo(map);
+
+        // Click on map to select region
+        map.on('click', function(e) {
+            const clickedLat = e.latlng.lat;
+            const clickedLng = e.latlng.lng;
+            
+            let region = "Telangana";
+            if (clickedLat > 15.5 && clickedLng > 79.5) {
+                region = "Coastal Andhra";
+            } else if (clickedLat < 16 && clickedLng < 80) {
+                region = "Rayalaseema";
+            }
+            
+            document.getElementById('regionRotation').value = region;
+        });
+    </script>
+</body>
+</html>
+

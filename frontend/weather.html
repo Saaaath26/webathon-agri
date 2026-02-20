@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather - SmartFarm Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>SmartFarm <span class="highlight">Pro</span></span>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="market.html"><i class="fas fa-rupee-sign"></i> Market Price</a>
+            <a href="harvest.html"><i class="fas fa-calendar-check"></i> Harvest</a>
+            <a href="rotation.html"><i class="fas fa-sync-alt"></i> Rotation</a>
+            <a href="soil.html"><i class="fas fa-layer-group"></i> Soil</a>
+            <a href="weather.html" class="active"><i class="fas fa-cloud"></i> Weather</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="page-header">
+            <h1><i class="fas fa-cloud"></i> Weather Forecast</h1>
+            <p>Get real-time weather alerts and forecasts for Andhra Pradesh & Telangana</p>
+        </div>
+
+        <div class="field-container">
+            <!-- Map Section -->
+            <div class="map-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Select Location</h2>
+                <div id="map"></div>
+                <div class="map-legend">
+                    <span><i class="fas fa-circle" style="color: #3498db;"></i> Weather Stations</span>
+                    <span><i class="fas fa-circle" style="color: #e74c3c;"></i> Active Alerts</span>
+                </div>
+            </div>
+
+            <!-- Weather Display -->
+            <div class="input-section">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon weather-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <h2>Current Weather</h2>
+                    </div>
+                    <div class="card-body">
+                        <select id="weatherLocation">
+                            <option value="">Select Location</option>
+                            <option value="Guntur">Guntur</option>
+                            <option value="Vijayawada">Vijayawada</option>
+                            <option value="Visakhapatnam">Visakhapatnam</option>
+                            <option value="Tirupati">Tirupati</option>
+                            <option value="Kakinada">Kakinada</option>
+                            <option value="Kurnool">Kurnool</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Warangal">Warangal</option>
+                            <option value="Karimnagar">Karimnagar</option>
+                            <option value="Nizamabad">Nizamabad</option>
+                        </select>
+                        <button class="btn-primary" onclick="getWeather()">
+                            <i class="fas fa-sync-alt"></i> Get Weather
+                        </button>
+                        <div class="result-box" id="weatherResult">
+                            <p class="placeholder-text">Select location to see weather forecast</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Weather Cards -->
+                <div class="weather-cards-grid">
+                    <div class="weather-quick-card">
+                        <i class="fas fa-thermometer-half"></i>
+                        <span>Temperature</span>
+                        <strong id="tempDisplay">--°C</strong>
+                    </div>
+                    <div class="weather-quick-card">
+                        <i class="fas fa-tint"></i>
+                        <span>Humidity</span>
+                        <strong id="humidityDisplay">--%</strong>
+                    </div>
+                    <div class="weather-quick-card">
+                        <i class="fas fa-wind"></i>
+                        <span>Wind</span>
+                        <strong id="windDisplay">-- km/h</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Info -->
+        <div class="market-info-grid">
+            <div class="info-card">
+                <i class="fas fa-umbrella"></i>
+                <h3>Monsoon (Jun-Sep)</h3>
+                <p>Southwest monsoon - Main cropping season for Kharif</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-sun"></i>
+                <h3>Rabi (Oct-Mar)</h3>
+                <p>Post-monsoon - Irrigated crops, wheat, chickpeas</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3> cyclone Alert</h3>
+                <p>Coastal AP prone to cyclones during Oct-Nov</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SmartFarm Pro - AI-Powered Agriculture Platform</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize map centered on Andhra Pradesh & Telangana
+        const map = L.map('map').setView([17.5, 79.5], 7);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Weather station locations
+        const weatherStations = [
+            // Andhra Pradesh
+            { name: "Guntur", coords: [16.3067, 80.4365], temp: 32, humidity: 65 },
+            { name: "Vijayawada", coords: [16.5062, 80.6480], temp: 33, humidity: 70 },
+            { name: "Visakhapatnam", coords: [17.6868, 83.2185], temp: 30, humidity: 75 },
+            { name: "Tirupati", coords: [13.6288, 79.4192], temp: 31, humidity: 60 },
+            { name: "Kakinada", coords: [16.9891, 82.2475], temp: 32, humidity: 72 },
+            { name: "Kurnool", coords: [15.8281, 78.0378], temp: 34, humidity: 55 },
+            { name: "Nellore", coords: [14.4426, 79.9868], temp: 32, humidity: 65 },
+            { name: "Rajahmundry", coords: [17.0005, 81.7580], temp: 33, humidity: 68 },
+            // Telangana
+            { name: "Hyderabad", coords: [17.3850, 78.4867], temp: 30, humidity: 50 },
+            { name: "Warangal", coords: [17.9784, 79.5941], temp: 31, humidity: 52 },
+            { name: "Karimnagar", coords: [18.4386, 79.1288], temp: 32, humidity: 48 },
+            { name: "Nizamabad", coords: [18.6725, 78.0941], temp: 33, humidity: 55 },
+            { name: "Medak", coords: [18.0461, 78.2639], temp: 31, humidity: 53 },
+            { name: "Khammam", coords: [17.2473, 80.1514], temp: 34, humidity: 58 }
+        ];
+
+        // Add markers for each weather station
+        weatherStations.forEach(station => {
+            const marker = L.circleMarker(station.coords, {
+                radius: 10,
+                fillColor: "#3498db",
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+            
+            marker.bindPopup(`<b>${station.name}</b><br>Temp: ${station.temp}°C<br>Humidity: ${station.humidity}%<br><em>Click to select</em>`);
+        });
+
+        // Add some alert zones (simulated)
+        const alertZones = [
+            { name: "Coastal AP Alert", coords: [16.5, 82.5], radius: 30000 },
+            { name: "Rayalaseema Dry", coords: [14.5, 78.5], radius: 40000 }
+        ];
+
+        alertZones.forEach(alert => {
+            L.circle(alert.coords, {
+                radius: alert.radius,
+                fillColor: "#e74c3c",
+                color: "#e74c3c",
+                weight: 1,
+                opacity: 0.5,
+                fillOpacity: 0.2
+            }).addTo(map).bindPopup(`<b>${alert.name}</b><br>Check weather alerts`);
+        });
+
+        // Click on map to select location
+        map.on('click', function(e) {
+            let closestStation = weatherStations[0];
+            let minDist = Infinity;
+            
+            weatherStations.forEach(station => {
+                const dist = map.distance(e.latlng, station.coords);
+                if (dist < minDist) {
+                    minDist = dist;
+                    closestStation = station;
+                }
+            });
+            
+            if (minDist < 80000) {
+                document.getElementById('weatherLocation').value = closestStation.name;
+                document.getElementById('tempDisplay').textContent = closestStation.temp + '°C';
+                document.getElementById('humidityDisplay').textContent = closestStation.humidity + '%';
+                document.getElementById('windDisplay').textContent = Math.floor(Math.random() * 20 + 5) + ' km/h';
+            }
+        });
+
+        // Auto-load weather on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            getWeather();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,28 +1,32 @@
 /* ========================================
-   SmartFarm Pro - Stunning CSS
+   SmartFarm Pro - Cream & White Theme
    ======================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
-    --primary-color: #2ecc71;
-    --primary-dark: #27ae60;
-    --secondary-color: #3498db;
-    --accent-color: #f39c12;
-    --danger-color: #e74c3c;
-    --success-color: #27ae60;
-    --warning-color: #f39c12;
-    --info-color: #3498db;
-    --dark-color: #2c3e50;
-    --light-color: #ecf0f1;
-    --gradient-green: linear-gradient(135deg, #11998e, #38ef7d);
-    --gradient-blue: linear-gradient(135deg, #667eea, #764ba2);
-    --gradient-orange: linear-gradient(135deg, #f093fb, #f5576c);
-    --gradient-purple: linear-gradient(135deg, #4facfe, #00f2fe);
-    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.2);
-    --shadow-glow: 0 0 40px rgba(46, 204, 113, 0.3);
+    /* Cream & White Theme */
+    --primary-color: #2E7D32;      /* Green */
+    --primary-light: #4CAF50;      /* Light Green */
+    --primary-dark: #1B5E20;       /* Dark Green */
+    --secondary-color: #FF8F00;     /* Amber */
+    --accent-color: #FF6F00;        /* Dark Amber */
+    --danger-color: #D32F2F;        /* Red */
+    --success-color: #388E3C;      /* Green */
+    --warning-color: #F57C00;      /* Orange */
+    --info-color: #1976D2;         /* Blue */
+    --dark-color: #212121;         /* Dark */
+    --light-color: #FAFAFA;        /* Light */
+    --white: #FFFFFF;              /* White */
+    --cream: #FFFDE7;             /* Cream */
+    --cream-light: #FFFEF5;        /* Light Cream */
+    --gradient-green: linear-gradient(135deg, #2E7D32, #4CAF50);
+    --gradient-amber: linear-gradient(135deg, #FF8F00, #FF6F00);
+    --gradient-cream: linear-gradient(135deg, #FFFFFF, #FFFDE7);
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 30px rgba(46, 125, 50, 0.2);
 }
 
 * {
@@ -33,9 +37,9 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background: linear-gradient(135deg, #FFFFFF, #FFFEF5, #FFFDE7);
     min-height: 100vh;
-    color: #fff;
+    color: #212121;
     overflow-x: hidden;
 }
 
@@ -56,13 +60,13 @@ body {
     left: 0;
     width: 200%;
     height: 200px;
-    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="rgba(46, 204, 113, 0.1)" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,144C672,128,768,128,864,154.7C960,181,1056,235,1152,240C1248,245,1344,203,1392,181.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="rgba(46,125,50,0.08)" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,144C672,128,768,128,864,154.7C960,181,1056,235,1152,240C1248,245,1344,203,1392,181.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
     animation: wave 20s linear infinite;
 }
 
 .wave1 { opacity: 0.5; animation-delay: 0s; }
 .wave2 { opacity: 0.3; animation-delay: -5s; bottom: 10px; }
-.wave3 { opacity: 0.1; animation-delay: -10s; bottom: 20px; }
+.wave3 { opacity: 0.15; animation-delay: -10s; bottom: 20px; }
 
 @keyframes wave {
     0% { transform: translateX(0); }
@@ -75,12 +79,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid rgba(46, 125, 50, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
 .logo {
@@ -111,25 +116,27 @@ header {
 
 nav {
     display: flex;
-    gap: 30px;
+    gap: 15px;
 }
 
 nav a {
-    color: rgba(255, 255, 255, 0.7);
+    color: #424242;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     padding: 10px 20px;
     border-radius: 25px;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 8px;
+    border: 2px solid transparent;
 }
 
 nav a:hover, nav a.active {
     background: var(--gradient-green);
     color: #fff;
     box-shadow: var(--shadow-glow);
+    border-color: var(--primary-color);
 }
 
 /* Hero Section */
@@ -144,6 +151,7 @@ nav a:hover, nav a.active {
     font-weight: 700;
     margin-bottom: 20px;
     animation: fadeInUp 1s ease;
+    color: #1B5E20;
 }
 
 .gradient-text {
@@ -155,7 +163,7 @@ nav a:hover, nav a.active {
 
 .hero-content p {
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #616161;
     margin-bottom: 40px;
     animation: fadeInUp 1s ease 0.2s both;
 }
@@ -177,12 +185,11 @@ nav a:hover, nav a.active {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    text-shadow: var(--shadow-glow);
 }
 
 .stat-label {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: #757575;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -210,11 +217,11 @@ main {
     display: flex;
     align-items: center;
     gap: 20px;
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.3));
+    background: linear-gradient(135deg, rgba(255, 248, 231, 0.9), rgba(255, 243, 224, 0.9));
     padding: 20px 30px;
     border-radius: 20px;
     margin-bottom: 40px;
-    border: 1px solid rgba(52, 152, 219, 0.3);
+    border: 2px solid rgba(255, 143, 0, 0.3);
     backdrop-filter: blur(10px);
     animation: slideIn 0.5s ease;
 }
@@ -227,13 +234,14 @@ main {
 .weather-icon {
     width: 60px;
     height: 60px;
-    background: var(--gradient-blue);
+    background: var(--gradient-amber);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     animation: float 3s ease-in-out infinite;
+    color: #fff;
 }
 
 @keyframes float {
@@ -246,7 +254,7 @@ main {
 }
 
 .weather-info h3 {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     margin-bottom: 5px;
     display: flex;
     align-items: center;
@@ -254,11 +262,11 @@ main {
 }
 
 .weather-info p {
-    color: rgba(255, 255, 255, 0.9);
+    color: #424242;
 }
 
 .refresh-btn {
-    background: var(--gradient-blue);
+    background: var(--gradient-amber);
     border: none;
     width: 45px;
     height: 45px;
@@ -282,11 +290,11 @@ main {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 25px;
+    background: #FFFFFF;
+    border-radius: 20px;
     padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
+    border: 2px solid rgba(46, 125, 50, 0.15);
+    box-shadow: var(--shadow-md);
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -298,7 +306,7 @@ main {
     top: 0;
     left: 0;
     width: 100%;
-    height: 5px;
+    height: 4px;
     background: var(--gradient-green);
     transform: scaleX(0);
     transform-origin: left;
@@ -310,9 +318,9 @@ main {
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
-    border-color: rgba(46, 204, 113, 0.3);
+    border-color: var(--primary-color);
 }
 
 .card-header {
@@ -323,24 +331,25 @@ main {
 }
 
 .card-icon {
-    width: 55px;
-    height: 55px;
-    border-radius: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #fff;
 }
 
 .price-icon { background: var(--gradient-green); }
-.harvest-icon { background: var(--gradient-orange); }
-.rotation-icon { background: var(--gradient-purple); }
-.soil-icon { background: var(--gradient-blue); }
+.harvest-icon { background: var(--gradient-amber); }
+.rotation-icon { background: linear-gradient(135deg, #1976D2, #42A5F5); }
+.soil-icon { background: linear-gradient(135deg, #5D4037, #8D6E63); }
 
 .card-header h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
+    color: #1B5E20;
 }
 
 .card-body {
@@ -350,11 +359,11 @@ main {
 }
 
 .card-body input {
-    padding: 15px 20px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 2px solid rgba(46, 125, 50, 0.2);
+    background: #FAFAFA;
+    color: #212121;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
@@ -363,23 +372,23 @@ main {
 .card-body input:focus {
     outline: none;
     border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
+    background: #fff;
+    box-shadow: 0 0 15px rgba(46, 125, 50, 0.15);
 }
 
 .card-body input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: #9E9E9E;
 }
 
 .card-body input[type="date"] {
-    color-scheme: dark;
+    color-scheme: light;
 }
 
 /* Buttons */
 .btn-primary, .btn-success, .btn-warning, .btn-info {
-    padding: 15px 25px;
+    padding: 14px 24px;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -393,9 +402,9 @@ main {
 }
 
 .btn-primary { background: var(--gradient-green); }
-.btn-success { background: var(--gradient-orange); }
-.btn-warning { background: var(--gradient-purple); }
-.btn-info { background: var(--gradient-blue); }
+.btn-success { background: var(--gradient-amber); }
+.btn-warning { background: linear-gradient(135deg, #1976D2, #42A5F5); }
+.btn-info { background: linear-gradient(135deg, #5D4037, #8D6E63); }
 
 .btn-primary:hover, .btn-success:hover, .btn-warning:hover, .btn-info:hover {
     transform: scale(1.02);
@@ -408,22 +417,22 @@ main {
 
 /* Result Box */
 .result-box {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    padding: 20px;
+    background: #FFFEF5;
+    border-radius: 12px;
+    padding: 18px;
     min-height: 80px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(46, 125, 50, 0.15);
 }
 
 .placeholder-text {
-    color: rgba(255, 255, 255, 0.4);
+    color: #9E9E9E;
     font-style: italic;
     text-align: center;
     padding: 10px;
 }
 
 .result-box p {
-    color: #fff;
+    color: #212121;
     line-height: 1.6;
     font-size: 0.95rem;
 }
@@ -432,15 +441,16 @@ main {
 .tips-section {
     margin-top: 50px;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: 2px solid rgba(46, 125, 50, 0.15);
 }
 
 .tips-section h2 {
     text-align: center;
     margin-bottom: 40px;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    color: #1B5E20;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -448,7 +458,7 @@ main {
 }
 
 .tips-section h2 i {
-    color: var(--accent-color);
+    color: var(--secondary-color);
 }
 
 .tips-grid {
@@ -458,61 +468,63 @@ main {
 }
 
 .tip-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 20px;
+    background: #FFFDE7;
+    padding: 25px;
+    border-radius: 15px;
     text-align: center;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(46, 125, 50, 0.1);
 }
 
 .tip-card:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
+    background: #fff;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
 }
 
 .tip-card i {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .tip-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #1B5E20;
 }
 
 .tip-card p {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-    line-height: 1.6;
+    color: #616161;
+    font-size: 0.85rem;
+    line-height: 1.5;
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 40px;
-    margin-top: 60px;
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    margin-top: 50px;
+    background: #FFFFFF;
+    border-top: 2px solid rgba(46, 125, 50, 0.15);
 }
 
 footer p {
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 20px;
+    color: #757575;
+    margin-bottom: 15px;
 }
 
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .social-links a {
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-green);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -523,20 +535,21 @@ footer p {
 }
 
 .social-links a:hover {
-    background: var(--primary-color);
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-        padding: 20px;
+        padding: 15px 20px;
     }
 
     nav {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 10px;
     }
 
     .hero-content h1 {
@@ -563,9 +576,9 @@ footer p {
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(46, 125, 50, 0.2);
     border-radius: 50%;
-    border-top-color: #fff;
+    border-top-color: var(--primary-color);
     animation: spin 1s ease-in-out infinite;
 }
 
@@ -575,27 +588,26 @@ footer p {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 5px;
+    background: var(--primary-light);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
+    background: var(--primary-color);
 }
 
 /* ========================================
    Separate Page Styles with Maps
    ======================================== */
 
-/* Page Content */
 .page-content {
     max-width: 1400px;
     margin: 0 auto;
@@ -608,12 +620,13 @@ footer p {
 }
 
 .page-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
+    color: #1B5E20;
 }
 
 .page-header h1 i {
@@ -621,11 +634,10 @@ footer p {
 }
 
 .page-header p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.1rem;
+    color: #616161;
+    font-size: 1rem;
 }
 
-/* Field Container */
 .field-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -633,51 +645,52 @@ footer p {
     margin-bottom: 40px;
 }
 
-/* Map Section */
 .map-section {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 25px;
+    background: #FFFFFF;
+    border-radius: 20px;
     padding: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(46, 125, 50, 0.15);
+    box-shadow: var(--shadow-md);
 }
 
 .map-section h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #1B5E20;
 }
 
 .map-section h2 i {
-    color: var(--accent-color);
+    color: var(--secondary-color);
 }
 
 #map {
     height: 400px;
-    border-radius: 15px;
+    border-radius: 12px;
     z-index: 1;
+    border: 2px solid rgba(46, 125, 50, 0.2);
 }
 
 .map-legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
     margin-top: 15px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    padding: 12px;
+    background: #FFFDE7;
+    border-radius: 8px;
 }
 
 .map-legend span {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #424242;
 }
 
-/* Input Section */
 .input-section {
     display: flex;
     flex-direction: column;
@@ -688,24 +701,22 @@ footer p {
     margin-bottom: 0;
 }
 
-/* Card Weather Icon */
 .weather-icon-card {
-    background: var(--gradient-blue);
+    background: var(--gradient-amber);
 }
 
-/* Select Dropdowns */
 .card-body select {
-    padding: 15px 20px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 2px solid rgba(46, 125, 50, 0.2);
+    background: #FAFAFA;
+    color: #212121;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
     cursor: pointer;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232E7D32' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 15px center;
 }
@@ -713,53 +724,54 @@ footer p {
 .card-body select:focus {
     outline: none;
     border-color: var(--primary-color);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(46, 125, 50, 0.15);
 }
 
 .card-body select option {
-    background: #2c3e50;
-    color: #fff;
+    background: #FFFFFF;
+    color: #212121;
 }
 
-/* Market Info Grid */
 .market-info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
 .info-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #FFFFFF;
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid rgba(46, 125, 50, 0.12);
     transition: all 0.3s ease;
 }
 
 .info-card:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
+    background: #FFFEF5;
     border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
 }
 
 .info-card i {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--primary-color);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .info-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #1B5E20;
 }
 
 .info-card p {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-    line-height: 1.6;
+    color: #616161;
+    font-size: 0.85rem;
+    line-height: 1.5;
 }
 
-/* Weather Quick Cards Grid */
 .weather-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -767,48 +779,48 @@ footer p {
 }
 
 .weather-quick-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 18px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 143, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .weather-quick-card i {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--secondary-color);
 }
 
 .weather-quick-card span {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    color: #757575;
 }
 
 .weather-quick-card strong {
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: 1.1rem;
+    color: #212121;
 }
 
-/* Leaflet Map Customization */
 .leaflet-popup-content-wrapper {
-    background: rgba(44, 62, 80, 0.95);
-    color: #fff;
+    background: #FFFFFF;
+    color: #212121;
     border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-md);
 }
 
 .leaflet-popup-tip {
-    background: rgba(44, 62, 80, 0.95);
+    background: #FFFFFF;
 }
 
 .leaflet-container a.leaflet-popup-close-button {
-    color: #fff;
+    color: var(--primary-color);
 }
 
-/* Responsive for Field Pages */
 @media (max-width: 1024px) {
     .field-container {
         grid-template-columns: 1fr;
@@ -821,7 +833,7 @@ footer p {
 
 @media (max-width: 768px) {
     .page-header h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .weather-cards-grid {
@@ -830,7 +842,6 @@ footer p {
     
     .map-legend {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
 }
-
