@@ -1,13 +1,23 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from market import get_live_price
 from harvest import predict_harvest
 from crop_rotation import suggest_rotation
 from soil import soil_suitability
 from weather import weather_alert
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend')
 CORS(app)
+
+# Serve frontend files
+@app.route('/')
+def index():
+    return send_from_directory('../frontend', 'index.html')
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('../frontend', filename)
 
 @app.route("/price", methods=["POST"])
 def price():
