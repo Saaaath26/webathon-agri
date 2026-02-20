@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Price - SmartFarm Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>SmartFarm <span class="highlight">Pro</span></span>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="market.html" class="active"><i class="fas fa-rupee-sign"></i> Market Price</a>
+            <a href="harvest.html"><i class="fas fa-calendar-check"></i> Harvest</a>
+            <a href="rotation.html"><i class="fas fa-sync-alt"></i> Rotation</a>
+            <a href="soil.html"><i class="fas fa-layer-group"></i> Soil</a>
+            <a href="weather.html"><i class="fas fa-cloud"></i> Weather</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="page-header">
+            <h1><i class="fas fa-rupee-sign"></i> Live Market Price</h1>
+            <p>Check current crop prices across mandis in Andhra Pradesh & Telangana</p>
+        </div>
+
+        <div class="field-container">
+            <!-- Map Section -->
+            <div class="map-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Regional Markets - AP & Telangana</h2>
+                <div id="map"></div>
+                <div class="map-legend">
+                    <span><i class="fas fa-circle" style="color: #2ecc71;"></i> Major Mandis</span>
+                    <span><i class="fas fa-circle" style="color: #3498db;"></i> District Centers</span>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon price-icon">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <h2>Search Crop Price</h2>
+                    </div>
+                    <div class="card-body">
+                        <input type="text" id="priceCrop" placeholder="Enter crop name (e.g., Wheat, Paddy, Tomato, Cotton, Chillies, Rice)">
+                        <select id="marketSelect">
+                            <option value="">All Markets</option>
+                            <option value="Guntur">Guntur</option>
+                            <option value="Vijayawada">Vijayawada</option>
+                            <option value="Visakhapatnam">Visakhapatnam</option>
+                            <option value="Tirupati">Tirupati</option>
+                            <option value="Kakinada">Kakinada</option>
+                            <option value="Kurnool">Kurnool</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Warangal">Warangal</option>
+                            <option value="Karimnagar">Karimnagar</option>
+                            <option value="Nizamabad">Nizamabad</option>
+                        </select>
+                        <button class="btn-primary" onclick="getPrice()">
+                            <i class="fas fa-search-dollar"></i> Get Price
+                        </button>
+                        <div class="result-box" id="priceResult">
+                            <p class="placeholder-text">Enter a crop to see current market prices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Info Cards -->
+        <div class="market-info-grid">
+            <div class="info-card">
+                <i class="fas fa-store"></i>
+                <h3>AP Markets</h3>
+                <p>Guntur, Vijayawada, Visakhapatnam, Tirupati, Kakinada, Kurnool</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-store"></i>
+                <h3>Telangana Markets</h3>
+                <p>Hyderabad, Warangal, Karimnagar, Nizamabad, Medak</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-info-circle"></i>
+                <h3>Price Trend</h3>
+                <p>Live prices updated daily from APMANDI & TGMET</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SmartFarm Pro - AI-Powered Agriculture Platform</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize map centered on Andhra Pradesh & Telangana
+        const map = L.map('map').setView([17.5, 79.5], 7);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Market locations in AP & Telangana
+        const markets = [
+            // Andhra Pradesh
+            { name: "Guntur", coords: [16.3067, 80.4365], type: "major" },
+            { name: "Vijayawada", coords: [16.5062, 80.6480], type: "major" },
+            { name: "Visakhapatnam", coords: [17.6868, 83.2185], type: "major" },
+            { name: "Tirupati", coords: [13.6288, 79.4192], type: "major" },
+            { name: "Kakinada", coords: [16.9891, 82.2475], type: "district" },
+            { name: "Kurnool", coords: [15.8281, 78.0378], type: "major" },
+            { name: "Nellore", coords: [14.4426, 79.9868], type: "district" },
+            { name: "Kadapa", coords: [14.4687, 78.8242], type: "district" },
+            { name: "Anantapur", coords: [14.6819, 77.6186], type: "district" },
+            { name: "Rajahmundry", coords: [17.0005, 81.7580], type: "district" },
+            { name: "Eluru", coords: [16.7107, 81.0952], type: "district" },
+            { name: "Ongole", coords: [15.5057, 80.0447], type: "district" },
+            // Telangana
+            { name: "Hyderabad", coords: [17.3850, 78.4867], type: "major" },
+            { name: "Warangal", coords: [17.9784, 79.5941], type: "major" },
+            { name: "Karimnagar", coords: [18.4386, 79.1288], type: "major" },
+            { name: "Nizamabad", coords: [18.6725, 78.0941], type: "major" },
+            { name: "Medak", coords: [18.0461, 78.2639], type: "district" },
+            { name: "Khammam", coords: [17.2473, 80.1514], type: "district" },
+            { name: "Mahbubnagar", coords: [16.7488, 77.9883], type: "district" },
+            { name: "Siddipet", coords: [18.1016, 78.8520], type: "district" }
+        ];
+
+        // Add markers for each market
+        markets.forEach(market => {
+            const color = market.type === "major" ? "#2ecc71" : "#3498db";
+            const marker = L.circleMarker(market.coords, {
+                radius: market.type === "major" ? 10 : 7,
+                fillColor: color,
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+            
+            marker.bindPopup(`<b>${market.name}</b><br>${market.type === "major" ? "Major Mandi" : "District Center"}`);
+        });
+
+        // Add boundary for AP & Telangana (approximate)
+        const apTelanganaBounds = [
+            [12.5, 77], [12.5, 84],
+            [19.5, 84], [19.5, 77]
+        ];
+        
+        L.rectangle(apTelanganaBounds, {
+            color: "#f39c12",
+            weight: 2,
+            fillOpacity: 0
+        }).addTo(map);
+
+        // Click on map to select market
+        map.on('click', function(e) {
+            let closestMarket = markets[0];
+            let minDist = Infinity;
+            
+            markets.forEach(market => {
+                const dist = map.distance(e.latlng, market.coords);
+                if (dist < minDist) {
+                    minDist = dist;
+                    closestMarket = market;
+                }
+            });
+            
+            if (minDist < 50000) {
+                document.getElementById('marketSelect').value = closestMarket.name;
+                document.getElementById('priceCrop').focus();
+            }
+        });
+    </script>
+</body>
+</html>
+
