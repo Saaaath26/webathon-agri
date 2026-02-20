@@ -324,5 +324,26 @@ function getWeather() {
 // Initialize weather on load
 document.addEventListener('DOMContentLoaded', function() {
     getWeather();
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
 });
+
+// Theme Toggle Function
+function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    if (newTheme === 'dark') {
+        html.removeAttribute('data-theme');
+    } else {
+        html.setAttribute('data-theme', newTheme);
+    }
+    
+    localStorage.setItem('theme', newTheme);
+}
 
